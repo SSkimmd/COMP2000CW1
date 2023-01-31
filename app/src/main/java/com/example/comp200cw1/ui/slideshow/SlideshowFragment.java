@@ -26,38 +26,11 @@ import java.util.Random;
 
 public class SlideshowFragment extends Fragment {
     private FragmentSlideshowBinding binding;
-    public ArrayList<Employee> Employees = new ArrayList();
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Employee e1 = new Employee("Employee Name", 1, false);
-        Employee e2 = new Employee("Employee Name", 2, true);
-        Employee e3 = new Employee("Employee Name", 3, false);
-        Employee e4 = new Employee("Employee Name", 4, true);
-        Employee e5 = new Employee("Employee Name", 5, false);
-        Employee e6 = new Employee("Employee Name", 6, true);
-        Employee e7 = new Employee("Employee Name", 7, false);
-        Employee e8 = new Employee("Employee Name", 8, true);
-        Employee e9 = new Employee("Employee Name", 9, false);
-        Employee e10 = new Employee("Employee Name", 10, true);
-        Employee e11 = new Employee("Employee Name", 11, false);
-        Employee e12 = new Employee("Employee Name", 12, true);
-
-        Employees.add(e1);
-        Employees.add(e2);
-        Employees.add(e3);
-        Employees.add(e4);
-        Employees.add(e5);
-        Employees.add(e6);
-        Employees.add(e7);
-        Employees.add(e8);
-        Employees.add(e9);
-        Employees.add(e10);
-        Employees.add(e11);
-        Employees.add(e12);
     }
 
 
@@ -67,35 +40,11 @@ public class SlideshowFragment extends Fragment {
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        for(int i = 0; i < Employees.size(); i++) {
-            LinearLayout layout = binding.getRoot().findViewById(R.id.testLayout1);
-
-            int employeeID = i;
-
-            Button employeeToggle = new AppCompatButton(binding.getRoot().getContext());
-            employeeToggle.setTextSize(16);
-            employeeToggle.setHeight(260);
-            employeeToggle.setBackground(getContext().getDrawable(R.drawable.button_border));
-            employeeToggle.setText("" + Employees.get(i).name + " - " + approvedToString(Employees.get(i).approved));
-
-            employeeToggle.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onClickEmployee(employeeToggle, employeeID);
-                }
-            });
-
-            layout.addView(employeeToggle);
-        }
-
         return root;
     }
 
     public void onClickEmployee(Button button, int id) {
-        Employee employee = Employees.get(id);
-        employee.approved = !employee.approved;
 
-        button.setText("" + employee.name + " - " + approvedToString(employee.approved));
     }
 
     String approvedToString(boolean approved) {

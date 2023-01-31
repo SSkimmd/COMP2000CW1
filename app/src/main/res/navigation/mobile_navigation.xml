@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/nav_edit_details"
-        android:name="com.example.comp200cw1.nav_edit_details"
+        android:name="com.example.comp200cw1.EditDetailsFragment"
         android:label="@string/menu_edit_details"
         tools:layout="@layout/fragment_edit_details" />
 </navigation>

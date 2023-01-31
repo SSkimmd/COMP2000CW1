@@ -7,48 +7,38 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link nav_edit_details#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class EditDetailsFragment extends Fragment {
     public EditDetailsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment nav_edit_details.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static nav_edit_details newInstance(String param1, String param2) {
-        nav_edit_details fragment = new nav_edit_details();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_details, container, false);
+        View root = inflater.inflate(R.layout.fragment_edit_details, container, false);
+
+        Button applyEditDetails = root.findViewById(R.id.updateEditDetails);
+        applyEditDetails.setOnClickListener(view -> {
+            EditText editForename = root.findViewById(R.id.editForename);
+            EditText editSurname = root.findViewById(R.id.editSurname);
+            EditText editID = root.findViewById(R.id.editForename2);
+
+            int id = Integer.parseInt(editID.getText().toString());
+            String forename = editForename.getText().toString();
+            String surname = editSurname.getText().toString();
+
+            EmployeeController.UpdateEmployee(id, forename, surname);
+        });
+
+        return root;
     }
 }
